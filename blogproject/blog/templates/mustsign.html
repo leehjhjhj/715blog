@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+{% load bootstrap4 %}
+</br></br>
+<img src = "{% static '무지1.png' %}" alt = "">
+    </br>
+</br></br>
+    <h4>로그인을 하셔야 글을 적을 수 있습니다.</h4>
+    </br></br>
+    <a href="{% url 'account:signup' %}"><button>회원가입</button></a>
+    <a href="{% url 'account:login' %}"><button>로그인하기</button></a>
+    <a href="{% url 'home' %}"><button>돌아가기</button></a>
+</br></br>
+</br></br>
+{% endblock %}

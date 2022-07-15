@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<style>
+  @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap');;
+</style>
+<html lang="ko" >
+  
+  <body style="
+  margin:0;
+  padding:0;
+  height:100%;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: larger;">
+    {% include 'header.html' %}
+
+    <div class="wrap" style="
+    position: relative;
+    
+    min-height: 100%;
+
+    margin: 0;
+
+    background: rgb(255, 255, 255);
+    font-family: 'Noto Sans KR', sans-serif;
+">
+    {% block content %}
+    {% endblock %}
+
+  </div>
+  </body>
+  <footer  style="
+
+  left: 0;
+  
+  bottom: 0;
+  
+  width: 100%;
+  
+  padding: 15px 0;
+  
+  text-align: center;
+  
+  color: white;
+  
+  background: rgba(161, 161, 161, 0.378);">
+  {% include 'footer.html' %}
+  </footer>
+</html>

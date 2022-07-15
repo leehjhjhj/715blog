@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+  {% block content %}
+  {% load static %}
+  {% load bootstrap4 %}
+  <head>
+    <link rel="stylesheet" href="{% static 'detail.css' %}">
+  </head>
+  <br><br>
+  <div class="container">
+  
+      <h1>{{ blog.title }}</h1>
+      <p>아이디: {{blog.user.username}}, 닉네임: {{ blog.user.nickname }}</p>
+      <p>{{ blog.pub_date }}</p>
+      <hr style="height:3px;">
+      <div class="body">
+      <p>{{ blog.body }}</p>
+        {% if blog.image %}
+        <img src="{{blog.image.url}}" style="width: 100%; height: auto;" alt="" />
+        {% endif %}
+      </div>
+      <br><br>
+      <a href="{% url 'blog:update' blog.id %}">
+        <button type="button" class="btn btn-outline-secondary">수정하기</button>
+      </a>
+      <a href="{% url 'home' %}">
+        <button type="button" class="btn btn-outline-secondary">홈으로</button>
+      </a>
+      <a href="{% url 'blog:delete' blog.id %}">
+        <button type="button" class="btn btn-outline-secondary">삭제하기</button>
+      </a>
+      <br><br>
+      <hr>
+      <div class="container1">
+        {% for comment in comments %}
+        {% if comment.user.username %}
+        <div class="card border-light mb-3" style="max-width: 40rem; height:5rem; margin: 0 auto;">
+          <div class="card-header">{{comment.user.username}} | {{comment.date}}</div>
+          <div class="card-body">
+            <p class="card-text">{{comment.body}} </p>
+            <br>
+          </div>
+        </div>
+        {% else %}
+        <div class="card border-light mb-3" style="max-width: 40rem; height: 5rem; text-align:center; margin: 0 auto;">
+          <div class="card-header">익명 | {{comment.date}}</div>
+          <div class="card-body">
+            <p class="card-text">{{comment.body}} </p>
+            <br>
+          </div>
+        </div>
+      </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+  </div>
+
+        <br>
+        <br><br>
+      <div class="container2">
+        <form method="POST">
+          {% csrf_token %}
+          <input name="body" type="text" style="width: 40rem; height: 8rem"value={{comment.body}}>
+          <input class="btn btn-primary" type="submit" value="댓글 입력">
+        </form>
+      </div>
+      <br/><br/>
+  {% endblock %}
